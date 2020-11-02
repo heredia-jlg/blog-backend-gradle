@@ -18,7 +18,7 @@ import org.springframework.data.mongodb.core.query.Query;
 public class BlogApplication {
 
 	public static void main(String[] args) {
-		MongoOperations mongoOps = new MongoTemplate(new SimpleMongoClientDatabaseFactory(MongoClients.create("mongodb+srv://me:weak@cluster0.jmdl2.mongodb.net/test"), "database"));
+		MongoOperations mongoOps = new MongoTemplate(new SimpleMongoClientDatabaseFactory(MongoClients.create(), "database"));
 
 		mongoOps.insert(new Blog("Those were tests and this is the most recent blog", "Hello, world!") );
 		SpringApplication.run(BlogApplication.class, args);
