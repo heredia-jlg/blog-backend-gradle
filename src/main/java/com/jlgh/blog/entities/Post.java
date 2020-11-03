@@ -1,21 +1,19 @@
 package com.jlgh.blog.entities;
 import java.util.Date;
 import java.util.Objects;
-import java.util.UUID;
+
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-@Document(collection = "Blogs")
-public class Blog {
+@Document(collection = "Posts")
+public class Post {
 
     @Id
     public String id;
-    public Date date;
     public String text;
     public String title;
 
-    public Blog( String text, String title) {
-        this.date = new Date();
+    public Post( String text, String title) {
         this.text = text;
         this.title = title;
     }
@@ -29,9 +27,6 @@ public class Blog {
     }
 
 
-    public Date getDate() {
-        return this.date;
-    }
 
     public String getText() {
         return text;
@@ -45,22 +40,20 @@ public class Blog {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        Blog blog = (Blog) o;
-        return Objects.equals(date, blog.date) &&
-                Objects.equals(text, blog.text) &&
-                Objects.equals(title, blog.title);
+        Post post = (Post) o;
+        return Objects.equals(text, post.text) &&
+                Objects.equals(title, post.title);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(date, text, title);
+        return Objects.hash( text, title);
     }
 
     @Override
     public String toString() {
-        return "Blog{" +
+        return "Post{" +
                 "id=" + id +
-                ", date=" + date +
                 ", text='" + text + '\'' +
                 ", title='" + title + '\'' +
                 '}';
