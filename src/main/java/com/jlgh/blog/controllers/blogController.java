@@ -34,7 +34,7 @@ public class blogController {
     public String createPost(@RequestBody String post) throws JsonProcessingException {
         Map<String,String> result = new ObjectMapper().readValue(post, HashMap.class);
         System.out.println(result.toString());
-        Post p = new Post(result.get("text"), result.get("title"));
+        Post p = new Post( result.get("text"), result.get("title"), result.get("tags") );
         this.blogRepository.insert(p);
         return "Succesfully added "+ p.title +" to database";
     }

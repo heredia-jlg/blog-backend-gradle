@@ -1,6 +1,7 @@
 package com.jlgh.blog.entities;
-import java.util.Date;
-import java.util.Objects;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.*;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -10,14 +11,25 @@ public class Post {
 
     @Id
     public String id;
+    public String date;
     public String text;
     public String title;
+    public String tags;
 
-    public Post( String text, String title) {
+    public Post( String text, String title, String tags) {
         this.text = text;
         this.title = title;
+        this.tags = tags;
+        this.date = this.getTime();
+
     }
 
+    public String getTime(){
+        LocalDateTime myDateObj = LocalDateTime.now();
+        DateTimeFormatter myFormatObj = DateTimeFormatter.ofPattern("E, MMM dd yyyy HH:mm");
+        String formattedDate = myDateObj.format(myFormatObj);
+        return formattedDate;
+    }
     public String getTitle() {
         return title;
     }
@@ -26,7 +38,13 @@ public class Post {
         this.title = title;
     }
 
+    public String getTags() {
+        return tags;
+    }
 
+    public void setTags(String tags) {
+        this.tags = tags;
+    }
 
     public String getText() {
         return text;
