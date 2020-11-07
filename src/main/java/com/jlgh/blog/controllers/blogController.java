@@ -25,18 +25,15 @@ public class blogController {
 
     @GetMapping(value = "/showAll")
     public List<Post> getAllPosts() {
-
         List<Post> posts = this.blogRepository.findAll();
         return posts;
     }
 
     @PostMapping("/insert")
-    public String createPost(@RequestBody String post) throws JsonProcessingException {
-        Map<String,String> result = new ObjectMapper().readValue(post, HashMap.class);
-        System.out.println(result.toString());
-        Post p = new Post( result.get("text"), result.get("title"), result.get("tags") );
-        this.blogRepository.insert(p);
-        return "Succesfully added "+ p.title +" to database";
+    public String createPost(@RequestBody Post post) throws JsonProcessingException {
+        post.setTime();
+        this.blogRepository.insert(post);
+        return "Succesfully added -" + post.title +"- to database";
     }
 
 }
