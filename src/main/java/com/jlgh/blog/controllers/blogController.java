@@ -22,6 +22,7 @@ public class blogController {
         this.blogRepository = blogRepository;
     }
 
+
     @CrossOrigin
     @GetMapping(value = "/showAll")
     public List<Post> getAllPosts() {
@@ -29,6 +30,7 @@ public class blogController {
         return posts;
     }
 
+    @CrossOrigin
     @PostMapping("/insert")
     public String createPost(@RequestBody Post post) throws JsonProcessingException {
         post.setTime();
