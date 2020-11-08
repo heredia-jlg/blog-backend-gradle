@@ -22,7 +22,7 @@ public class blogController {
         this.blogRepository = blogRepository;
     }
 
-
+    @CrossOrigin
     @GetMapping(value = "/showAll")
     public List<Post> getAllPosts() {
         List<Post> posts = this.blogRepository.findAll();
