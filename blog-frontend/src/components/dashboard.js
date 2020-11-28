@@ -1,5 +1,6 @@
 import React from 'react';
-import {Post} from './Post.js'
+import PostTable from './PostTable.component.js'
+import Router from './routing'
 
 export default function Dashboard()
 {
@@ -7,7 +8,8 @@ export default function Dashboard()
         return(
             <div>
                 <h1>Dashboard</h1>
-                <Post></Post>
+                <PostTable></PostTable>
+                <Router></Router>
             </div>
         );
     
